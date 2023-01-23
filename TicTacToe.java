@@ -112,13 +112,15 @@ public class TicTacToe {
         char player = selectPlayer(scan);
 
         char winner;
-        while (true) {
+        int round = 0;
+        while (round < 9) {
             System.out.println("Player " + player + ", enter your placement (1-9): ");
             int pos = scan.nextInt();
     
             int[] arrPos = convertPosition(pos);
 
             if (judgePlacement(arrPos, gameData)) {
+                round++;
                 placePiece(gameBoard, gameData, arrPos, player);
                 printGameBoard(gameBoard);
     
@@ -126,6 +128,9 @@ public class TicTacToe {
                 else { player = 'X'; }
     
                 winner = checkWinner(gameData);
+                if (round >= 9) {
+                    winner = 'd';
+                }
                 if (endGame(winner)) {
                     break;
                 }
@@ -211,6 +216,10 @@ public class TicTacToe {
 
  
     public static boolean endGame(char winner) {
+        if (winner == 'd') {
+            System.out.print("DRAW!");
+            return true;
+        }
         if (winner != 'n') {
             System.out.println(winner + " WINS!");
             return true;
