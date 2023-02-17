@@ -128,7 +128,7 @@ public class TicTacToe {
                 else { player = 'X'; }
     
                 winner = checkWinner(gameData);
-                if (round >= 9) {
+                if (round >= 9 && winner == 'n') {
                     winner = 'd';
                 }
                 if (endGame(winner)) {
